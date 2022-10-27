@@ -24,7 +24,6 @@ import com.miggyspring.recipeProject.repositories.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Transactional
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -39,6 +38,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
         recipeRepository.saveAll(getRecipes());
         log.debug("Loading Bootstrap Data...");

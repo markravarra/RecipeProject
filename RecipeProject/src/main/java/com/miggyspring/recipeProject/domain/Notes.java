@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Notes {
 
@@ -19,7 +20,7 @@ public class Notes {
 	private Long id;
 
 	@OneToOne
-	@EqualsAndHashCode.Exclude private Recipe recipe;
+	private Recipe recipe;
 
 	@Lob
 	private String recipeNotes;

@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(exclude = {"recipe", "uom"})
 @Entity
 public class Ingredient {
 
@@ -25,10 +26,10 @@ public class Ingredient {
 	private BigDecimal amount;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@EqualsAndHashCode.Exclude private UnitOfMeasure uom;
+	private UnitOfMeasure uom;
 
 	@ManyToOne
-	@EqualsAndHashCode.Exclude private Recipe recipe;
+	private Recipe recipe;
 
 	public Ingredient() {
 	}

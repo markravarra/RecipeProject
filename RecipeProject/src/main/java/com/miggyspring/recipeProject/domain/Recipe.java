@@ -21,6 +21,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(exclude = {"ingredients", "notes", ""})
 @Entity
 public class Recipe {
 
@@ -39,7 +40,7 @@ public class Recipe {
 	private String directions;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	@EqualsAndHashCode.Exclude private Set<Ingredient> ingredients = new HashSet<>();
+	private Set<Ingredient> ingredients = new HashSet<>();
 
 	@Lob
 	private Byte[] image;
@@ -48,7 +49,7 @@ public class Recipe {
 	private Difficulty difficulty;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@EqualsAndHashCode.Exclude private Notes notes;
+	private Notes notes;
 
 	@ManyToMany
 	@JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
